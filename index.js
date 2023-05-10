@@ -5,7 +5,7 @@ const { config } = require("dotenv");
 const { Server } = require("socket.io");
 const { createServer } = require("http");
 const cookieparser = require("cookie-parser");
-
+const { checkToken } = require("./src/middleware/checkToken");
 const routes = require("./src/routes/v1/index.route");
 
 const corsOpts = {
@@ -26,7 +26,7 @@ app.use(
 );
 app.use(cors(corsOpts));
 app.use(cookieparser());
-
+app.use(checkToken);
 app.use("/api/v1", routes);
 
 const httpServer = createServer(app);
