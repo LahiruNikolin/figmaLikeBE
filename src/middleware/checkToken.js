@@ -17,7 +17,7 @@ function checkToken(req, res, next) {
 
   if (determineAllowedPath(req)) return next();
 
-  if (accessToken) next();
+  if (accessToken) return next();
   else return res.status(401).json({ error: "you need to be logged in" });
 }
 
